@@ -1,7 +1,31 @@
+import java.security.InvalidParameterException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class RacingCar {
     private Scanner scanner = new Scanner(System.in);
+
+    private void validateCarName(String name) {
+        if (name.length() > 5) {
+            throw new InvalidParameterException("car name must less than 6");
+        }
+    }
+
+    public List<String> parseCarNames(String carNames) {
+        List<String> result = new ArrayList<>();
+        for (String name : carNames.split(",")) {
+            validateCarName(name);
+            result.add(name);
+        }
+        return result;
+    }
+
+    private void inputCarNames() {
+        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+        List<String> carNames = parseCarNames(scanner.nextLine());
+        // TODO
+    }
 
     private void racing() {
         // TODO
@@ -19,8 +43,7 @@ public class RacingCar {
     }
 
     public void run() {
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-        final String inputNames = scanner.nextLine();
+        inputCarNames();
         System.out.println("시도할 회수는 몇회인가요?");
         final int tryNum = Integer.parseInt(scanner.nextLine());
         racing();
