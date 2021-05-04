@@ -5,6 +5,11 @@ import java.util.Scanner;
 
 public class RacingCar {
     private Scanner scanner = new Scanner(System.in);
+    private Turns turns;
+
+    public void init() {
+        turns = new Turns();
+    }
 
     private void validateCarName(String name) {
         if (name.length() > 5) {
@@ -27,6 +32,12 @@ public class RacingCar {
         // TODO
     }
 
+    private void inputTurns() {
+        System.out.println("시도할 회수는 몇회인가요?");
+        final int turns = Integer.parseInt(scanner.nextLine());
+        this.turns.setTurns(turns);
+    }
+
     private void racing() {
         // TODO
     }
@@ -44,8 +55,7 @@ public class RacingCar {
 
     public void run() {
         inputCarNames();
-        System.out.println("시도할 회수는 몇회인가요?");
-        final int tryNum = Integer.parseInt(scanner.nextLine());
+        inputTurns();
         racing();
         printResult();
     }
