@@ -33,8 +33,7 @@ public class RacingCar {
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
         List<String> carNames = parseCarNames(scanner.nextLine());
         for (String carName : carNames) {
-            Car car = new Car();
-            car.setName(carName);
+            Car car = new Car(carName);
             racingStatus.addCar(car);
         }
     }
