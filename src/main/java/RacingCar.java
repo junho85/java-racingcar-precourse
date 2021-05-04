@@ -1,17 +1,17 @@
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class RacingCar {
     private Scanner scanner = new Scanner(System.in);
     private Turns turns;
     private RacingStatus racingStatus;
+    private Random random;
+
 
     public void init() {
         turns = new Turns();
         racingStatus = new RacingStatus();
+        random = new Random();
     }
 
     private void validateCarName(String name) {
@@ -52,9 +52,9 @@ public class RacingCar {
         }
     }
 
-    private String printScore(Integer score) {
+    private String printPosition(Integer position) {
         String result = "";
-        for (int i = 0; i < score; i++) {
+        for (int i = 0; i < position; i++) {
             result += "-";
         }
         return result;
@@ -64,10 +64,15 @@ public class RacingCar {
         Map<Car, Integer> status = racingStatus.getStatus();
 
         for (Car car : status.keySet()) {
-            racingStatus.addScore(car);
-            System.out.printf("%s : %s%n", car.getName(), printScore(racingStatus.getScore(car)));
+            goOrNot(car);
+            System.out.printf("%s : %s%n", car.getName(), printPosition(racingStatus.getPosition(car)));
         }
         System.out.println();
+    }
+
+    private void goOrNot(Car car) {
+        if (random.nextInt(10) >= 4)
+            racingStatus.addPosition(car);
     }
 
     private void printResult() {

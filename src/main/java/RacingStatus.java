@@ -12,13 +12,13 @@ public class RacingStatus {
         return status;
     }
 
-    public Integer getScore(Car car) {
+    public Integer getPosition(Car car) {
         return status.get(car);
     }
 
-    public void addScore(Car car) {
-        Integer score = getScore(car);
-        score++;
-        status.put(car, score);
+    public void addPosition(Car car) {
+        Integer position = getPosition(car);
+        position++;
+        status.put(car, position);
     }
 }
