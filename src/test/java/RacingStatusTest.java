@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Set;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,5 +50,31 @@ class RacingStatusTest {
 
         assertThat(racingStatus.getPosition(car))
                 .isEqualTo(1);
+    }
+
+    @Test
+    void getWinners() {
+        RacingStatus racingStatus = new RacingStatus();
+
+        Car carA = new Car("a");
+        Car carB = new Car("b");
+        Car carC = new Car("c");
+
+        racingStatus.addCar(carA);
+        racingStatus.addCar(carB);
+        racingStatus.addCar(carC);
+
+        racingStatus.addPosition(carA);
+        racingStatus.addPosition(carA);
+
+        racingStatus.addPosition(carB);
+        racingStatus.addPosition(carB);
+
+        racingStatus.addPosition(carC);
+
+        Set<Car> winners = racingStatus.getWinners();
+
+        assertThat(winners)
+                .containsExactly(carA, carB);
     }
 }

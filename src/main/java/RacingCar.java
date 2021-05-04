@@ -75,7 +75,13 @@ public class RacingCar {
     }
 
     private void printResult() {
-        System.out.println("pobi, honux가 최종 우승했습니다.");
+        Set<Car> winners = racingStatus.getWinners();
+        List<String> winnersString = new ArrayList<>();
+        for (Car winner : winners) {
+            winnersString.add(winner.getName());
+        }
+
+        System.out.printf("%s가 최종 우승했습니다.\n", String.join(", ", winnersString));
     }
 
     public void run() {
